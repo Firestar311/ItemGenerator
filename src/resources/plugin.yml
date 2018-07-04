@@ -1,0 +1,6 @@
+name: ItemGenerator
+version: 1.0
+main: net.firecraftmc.itemgenerator.ItemGenerator
+commands:
+   generator:
+       aliases: [gen, g]
