@@ -1,9 +1,9 @@
 package net.firecraftmc.itemgenerator;
 
+import net.firecraftmc.shared.classes.FirecraftMC;
 import net.firecraftmc.shared.classes.Messages;
 import net.firecraftmc.shared.classes.Prefixes;
 import net.firecraftmc.shared.classes.Utils;
-import net.firecraftmc.shared.classes.abstraction.FirecraftPlugin;
 import net.firecraftmc.shared.classes.enums.Rank;
 import net.firecraftmc.shared.classes.model.player.FirecraftPlayer;
 import org.bukkit.Location;
@@ -33,7 +33,7 @@ public class GeneratorManager implements CommandExecutor {
             return true;
         }
 
-        FirecraftPlayer player = FirecraftPlugin.getInstance().getPlayerManager().getPlayer(((Player) sender).getUniqueId());
+        FirecraftPlayer player = FirecraftMC.getPlayer(((Player) sender).getUniqueId());
 
         if (!player.getMainRank().isEqualToOrHigher(Rank.ADMIN)) {
             player.sendMessage(Messages.noPermission);
