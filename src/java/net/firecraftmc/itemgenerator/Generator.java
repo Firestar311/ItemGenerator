@@ -1,21 +1,24 @@
 package net.firecraftmc.itemgenerator;
 
 import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class Generator extends BukkitRunnable {
 
     private Block block;
+    private Sign sign;
     private ItemStack item;
     private double timeX;
     private double time;
 
-    public Generator(Block block, ItemStack item, double time) {
+    public Generator(Block block, ItemStack item, double time, Sign sign) {
         this.block = block;
         this.item = item;
         this.timeX = time;
         this.time = time;
+        this.sign = sign;
     }
 
     public void run() {

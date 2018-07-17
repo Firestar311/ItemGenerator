@@ -9,6 +9,7 @@ import net.firecraftmc.shared.classes.model.player.FirecraftPlayer;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -72,9 +73,23 @@ public class GeneratorManager implements CommandExecutor {
             } catch (Exception e) {
                 player.sendMessage(Prefixes.GENERATORS + "<ec>That is not a valid time.");
                 return true;
-            } 
+            }
+            
+            Block signBlock = player.getPlayer().getWorld().getBlockAt(block.getLocation().add(0, 1, 0));
+            if (!(signBlock.getState() instanceof Sign)) {
+                signBlock.getState().setType(Material.SIGN);
+                signBlock.getState().update();
+            }
+            
+            Sign sign = (Sign) signBlock.getState();
+            sign.setLine(0, Utils.color("&6&lGenerator"));
+            sign.setLine(1, Utils.color("&b" + material.toString().toUpperCase()));
+            sign.setLine(2, Utils.color("&dInterval: " + args[2] + "s"));
+            
+            sign.update();
+            player.getPlayer().sendSignChange(sign.getLocation(), sign.getLines());
 
-            Generator generator = new Generator(block, new ItemStack(material), time);
+            Generator generator = new Generator(block, new ItemStack(material), time, sign);
             this.gens.put(block.getLocation(), generator);
             generator.runTaskTimer(plugin, 0, 1);
             player.sendMessage(Prefixes.GENERATORS + "<nc>You created a generator for the item <vc>" + args[1] + " <nc>with an interval of <vc>" + time);
