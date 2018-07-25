@@ -1,18 +1,14 @@
 package net.firecraftmc.itemgenerator;
 
-import net.firecraftmc.shared.classes.FirecraftMC;
-import net.firecraftmc.shared.classes.Messages;
-import net.firecraftmc.shared.classes.Prefixes;
-import net.firecraftmc.shared.classes.Utils;
-import net.firecraftmc.shared.classes.enums.Rank;
-import net.firecraftmc.shared.classes.model.player.FirecraftPlayer;
+import net.firecraftmc.api.FirecraftAPI;
+import net.firecraftmc.api.enums.Rank;
+import net.firecraftmc.api.model.player.FirecraftPlayer;
+import net.firecraftmc.api.util.*;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,7 +30,7 @@ public class GeneratorManager implements CommandExecutor {
             return true;
         }
 
-        FirecraftPlayer player = FirecraftMC.getPlayer(((Player) sender).getUniqueId());
+        FirecraftPlayer player = FirecraftAPI.getPlayer(((Player) sender).getUniqueId());
 
         if (!player.getMainRank().isEqualToOrHigher(Rank.ADMIN)) {
             player.sendMessage(Messages.noPermission);
