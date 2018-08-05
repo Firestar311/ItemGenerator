@@ -17,8 +17,8 @@ import java.util.Map;
 
 public class GeneratorManager implements CommandExecutor {
 
-    private ItemGenerator plugin;
-    private Map<Location, Generator> gens = new HashMap<>();
+    private final ItemGenerator plugin;
+    private final Map<Location, Generator> gens = new HashMap<>();
 
     public GeneratorManager(ItemGenerator plugin) {
         this.plugin = plugin;

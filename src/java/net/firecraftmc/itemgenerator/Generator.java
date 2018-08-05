@@ -7,10 +7,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Generator extends BukkitRunnable {
 
-    private Block block;
-    private Sign sign;
-    private ItemStack item;
-    private double timeX;
+    private final Block block;
+    private final Sign sign;
+    private final ItemStack item;
+    private final double timeX;
     private double time;
 
     public Generator(Block block, ItemStack item, double time, Sign sign) {
